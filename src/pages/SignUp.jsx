@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { signup } from "../../../api/controllers/auth.controller";
 import '../css/style.css';
 
-
-export default function Home() {
+export default function SignUp() {
     const [formData, setFormData] = useState({});
 
     const handleChange = (e) => {
@@ -33,6 +32,7 @@ export default function Home() {
             console.error('Error:', error);
         }
     }
+
     return (
         <div className="container">
             <input type="checkbox" id="check" />
@@ -48,12 +48,29 @@ export default function Home() {
                 <div className="signup">
                     <span className="signup">
                         <Link to="/sign-up">
-                        Don't have an account?
+                        Don't have an account? 
                         <label htmlFor="check">Signup</label>
                         </Link>
                     </span>
                 </div>
             </div>
+            <div className="registration form">
+                <header>Signup</header>
+                <form>
+                    <input type="text" placeholder="Enter your name" onChange={handleChange} name="name" />
+                    <input type="text" placeholder="Enter your email" onChange={handleChange} name="email" />
+                    <input type="password" placeholder="Create a password" onChange={handleChange} name="password" />
+                    <button className="button" onClick={handleSubmit}>Signup</button>
+                </form>
+                <div className="sign-up">
+                    <span className="signup">
+                        Already have an account?
+                        <Link to="/sign-in">
+                            <label htmlFor="check">Login</label>
+                        </Link>
+                    </span>
+                </div>
             </div>
+        </div>
     );
 }
